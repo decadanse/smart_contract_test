@@ -9,4 +9,8 @@ in terminal 2:
 truffle(develop)> compile
 truffle(develop)> migrate --reset
 
+creating file for testing contract and place it into "test" folder
+
+truffle(develop)> test --debug
+
 

@@ -1,0 +1,77 @@
+output:
+
+truffle(develop)> migrate --reset
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'develop'
+> Network id:      5777
+> Block gas limit: 6721975 (0x6691b7)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x7cd336003ce9fcaf02fa8ca34a62b1e41deac5f253717fb07e7e30e15b713bd5
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x551b9d0ff8d3Fd6e8E29bb50D8b349697806bf33
+   > block number:        1
+   > block timestamp:     1629620150
+   > account:             0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0
+   > balance:             99.999616114
+   > gas used:            191943 (0x2edc7)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000383886 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:         0.000383886 ETH
+
+
+Summary
+=======
+> Total deployments:   1
+> Final cost:          0.000383886 ETH
+
+
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+
+truffle(develop)> test --debug
+Using network 'develop'.
+
+
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Migrations.sol
+> Compiling ./contracts/MultiSignature.sol
+> Compiling ./contracts/smartcontract.sol
+> Compiling ./test/MultiSignature.test_sending.sol
+> Compilation warnings encountered:
+
+    Warning: SPDX license identifier not provided in source file. Before publishing...
+--> project:/contracts/MultiSignature.sol
+
+    Warning: SPDX license identifier not provided in source file. Before publishing...
+--> project:/contracts/smartcontract.sol
+
+
+> Artifacts written to /tmp/test--26971-ytw0fmrH1h6d
+> Compiled successfully using:
+   - solc: 0.8.7+commit.e28d00a7.Emscripten.clang
+
+
+
+  0 passing (1ms)
+
