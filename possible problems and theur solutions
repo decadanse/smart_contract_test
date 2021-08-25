@@ -60,6 +60,41 @@ Compiling your contracts...
 ______________________
 4 problem/
 
-4 problem/solution/
+2_deploy_contracts.js
+=====================
 
-3 problem/solution/
+   Deploying 'MultiSigWallet'
+   --------------------------
+
+Error:  *** Deployment Failed ***
+
+"MultiSigWallet" -- Invalid number of parameters for "undefined". Got 0 expected 2!.
+
+    at /usr/local/lib/node_modules/truffle/build/webpack:/packages/deployer/src/deployment.js:365:1
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+
+4 problem/solution/
+https://forum.ivanontech.com/t/error-when-migrating-pls-help/36207/5
+
+In your migration file, you have to do something like this, at the end of the deployment, you can add the arguments that the constructor needs.
+
+const MSWallet = artifacts.require("MSWallet");
+
+module.exports = function (deployer) {
+  deployer.deploy(MSWallet, ["address1","address2","address3"], 2);
+};
+
+Your constructor requires an array and uint values to initialize, so im just sending it an array with addresses and the approvals limit.
+
+    constructor(address[] memory _owners, uint _approvalLimit) {
+        owners = _owners;
+        approvalLimit = _approvalLimit;
+    }
+
+this part: addind parameters
+______________________
+5 problem/
+
+5 problem/solution/
