@@ -97,4 +97,39 @@ this part: addind parameters
 ______________________
 5 problem/
 
+when testing error message appear: 
+
+Error: Cannot find module 'chai-as-promised'
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:636:15)
+    at Function.Module._load (internal/modules/cjs/loader.js:562:25)
+    at Module.require (internal/modules/cjs/loader.js:692:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at Object.<anonymous> (/home/dex/smart-contracts/smart-contract-test/test/MultiSigWallet_test.js:2:10)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+    at Module.require (internal/modules/cjs/loader.js:692:17)
+    at require (internal/modules/cjs/helpers.js:25:18)
+    at /usr/local/lib/node_modules/truffle/node_modules/mocha/lib/mocha.js:390:36
+    at Array.forEach (<anonymous>)
+    at Mocha.loadFiles (/usr/local/lib/node_modules/truffle/node_modules/mocha/lib/mocha.js:387:14)
+    at Mocha.run (/usr/local/lib/node_modules/truffle/node_modules/mocha/lib/mocha.js:961:10)
+    at resolve (/usr/local/lib/node_modules/truffle/build/webpack:/packages/core/lib/testing/Test.js:151:1)
+    at new Promise (<anonymous>)
+    at Object.run (/usr/local/lib/node_modules/truffle/build/webpack:/packages/core/lib/testing/Test.js:150:1)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+
+
 5 problem/solution/
+
+https://intellij-support.jetbrains.com/hc/en-us/community/posts/360001018180-Error-Cannot-find-module-chai-as-promised-
+
+this part: npm i chai chai-as-promised
+______________________
+6 problem/
+
+6 problem/solution
+______________________
+5 problem/

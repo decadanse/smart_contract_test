@@ -1,0 +1,144 @@
+truffle(develop)> deploy
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'develop'
+> Network id:      5777
+> Block gas limit: 6721975 (0x6691b7)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   > transaction hash:    0x73bc02a10b2b9c97b396739d50db1a8c4861886e997fc92eb6c3ab56d935746e
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xaea90d15F72a01fb604706EeD1F7EA8fE7996FbB
+   > block number:        67
+   > block timestamp:     1629991401
+   > account:             0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0
+   > balance:             99.912609399999999999
+   > gas used:            191943 (0x2edc7)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000383886 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:         0.000383886 ETH
+
+
+2_deploy_contracts.js
+=====================
+-----------------------------
+[ '0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0',
+  '0x7AD808A753794d177C024f3f925b5E914de27F86',
+  '0x1F8eC0B329918621a01fEba96896C0F8083B71aB',
+  '0x2249bB79fd8e249D70B9c12422186C1993740Cd9',
+  '0xb1a5644394Eb9d2b7bE0f667ecc25384a9931226',
+  '0x476F7e292b88564952b5D5125609c8C0621aED17',
+  '0x08c79Ef4391561BdB206BdE0980330F278C079Fb',
+  '0x675275ddD621780997B1df49a5956a28431800f5',
+  '0x0d28dBEEFD27d10005CBf3358AcdA58d252c9d76',
+  '0xCc5aeA5F865E96e916D65Ff8Da1dDD4CAe27326B' ]
+-----------------------------
+
+   Replacing 'MultiSigWallet'
+   --------------------------
+   > transaction hash:    0xb455f7e82a0b0d88f82eb0ed4378042b1a2c8ba855fd8e6105c43c855d143a2b
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xf2C4FB16912B2861a8E0150A30ef732A50B643E4
+   > block number:        69
+   > block timestamp:     1629991402
+   > account:             0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0
+   > balance:             99.908838461999999999
+   > gas used:            1843131 (0x1c1fbb)
+   > gas price:           2 gwei
+   > value sent:          0 ETH
+   > total cost:          0.003686262 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:         0.003686262 ETH
+
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.004070148 ETH
+
+
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+- Blocks: 0            Seconds: 0
+- Saving migration to chain.
+
+
+truffle(develop)> test
+Using network 'develop'.
+
+
+Compiling your contracts...
+===========================
+> Compiling ./test/MultiSigWallet.test_sending.sol
+> Artifacts written to /tmp/test--3648-LVNGCPOgrAxL
+> Compiled successfully using:
+   - solc: 0.8.7+commit.e28d00a7.Emscripten.clang
+
+-----------------------------
+[ '0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0',
+  '0x7AD808A753794d177C024f3f925b5E914de27F86',
+  '0x1F8eC0B329918621a01fEba96896C0F8083B71aB',
+  '0x2249bB79fd8e249D70B9c12422186C1993740Cd9',
+  '0xb1a5644394Eb9d2b7bE0f667ecc25384a9931226',
+  '0x476F7e292b88564952b5D5125609c8C0621aED17',
+  '0x08c79Ef4391561BdB206BdE0980330F278C079Fb',
+  '0x675275ddD621780997B1df49a5956a28431800f5',
+  '0x0d28dBEEFD27d10005CBf3358AcdA58d252c9d76',
+  '0xCc5aeA5F865E96e916D65Ff8Da1dDD4CAe27326B' ]
+-----------------------------
+
+
+  Contract: MultiSigWallet
+    constructor
+      ✓ should deploy (390ms)
+      ✓ should reject if no owners (1400ms)
+      ✓ should reject if num conf required > owners (145ms)
+      ✓ should reject if owners not unique (185ms)
+    fallback
+      ✓ should receive ether (99ms)
+    submitTransaction
+      ✓ should submit transaction (364ms)
+      ✓ should reject if not owner (80ms)
+    confirmTransaction
+      ✓ should confirm (147ms)
+      ✓ should reject if not owner (96ms)
+      ✓ should reject if tx does not exist (88ms)
+      ✓ should reject if already confirmed (204ms)
+    executeTransaction
+      ✓ should execute (137ms)
+      ✓ should reject if already executed (187ms)
+      ✓ should reject if not owner (72ms)
+      ✓ should reject if tx does not exist (113ms)
+    revokeConfirmation
+      ✓ should revoke confirmation (433ms)
+      ✓ should reject if not owner (187ms)
+      ✓ should reject if tx does not exist (88ms)
+    getOwners
+      ✓ should return owners
+    getTransactionCount
+      ✓ should return tx count
+
+
+  20 passing (12s)
