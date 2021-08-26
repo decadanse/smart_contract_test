@@ -51,6 +51,16 @@ contract MultiSigWallet {
         _;
     }
 
+    /*
+    Exercise
+    1. Validate that the _owner is not empty
+    2. Validate that _numConfirmationsRequired is greater than 0
+    3. Validate that _numConfirmationsRequired is less than or equal to the number of _owners
+    4. Set the state variables owners from the input _owners.
+        - each owner should not be the zero address
+        - validate that the owners are unique using the isOwner mapping
+    5. Set the state variable numConfirmationsRequired from the input.
+    */
     constructor(address[] memory _owners, uint _numConfirmationsRequired) {
         require(_owners.length > 0, "owners required");
         require(
@@ -96,6 +106,19 @@ contract MultiSigWallet {
         emit SubmitTransaction(msg.sender, txIndex, _to, _value, _data);
     }
 
+    /* Exercise
+    1. Complete the modifier txExists
+        - it should require that the transaction at txIndex exists
+    2. Complete the modifier notExecuted
+        - it should require that the transaction at txIndex is not yet executed
+    3. Complete the modifier notConfirmed
+        - it should require that the transaction at txIndex is not yet
+          confirmed by msg.sender
+    4. Confirm the transaction
+        - update the isConfirmed to true for msg.sender
+        - increment numConfirmation by 1
+        - emit ConfirmTransaction event for the transaction being confirmed
+    */
     function confirmTransaction(uint _txIndex)
         public
         onlyOwner
@@ -110,6 +133,14 @@ contract MultiSigWallet {
         emit ConfirmTransaction(msg.sender, _txIndex);
     }
 
+    /* Exercise
+    1. Execute the transaction
+        - it should require that number of confirmations >= numConfirmationsRequired
+        - set executed to true
+        - execute the transaction using the low level call method
+        - require that the transaction executed successfully
+        - emit ExecuteTransaction
+    */
     function executeTransaction(uint _txIndex)
         public
         onlyOwner
@@ -133,6 +164,17 @@ contract MultiSigWallet {
         emit ExecuteTransaction(msg.sender, _txIndex);
     }
 
+    /* Exercise
+    1. Add appropriate modifiers
+        - only owner should be able to call this function
+        - transaction at _txIndex must exist
+        - transaction at _txIndex must be executed
+    2. Revoke the confirmation
+        - require that msg.sender has confirmed the transaction
+        - set isConfirmed to false for msg.sender
+        - decrement numConfirmations by 1
+        - emit RevokeConfirmation
+    */
     function revokeConfirmation(uint _txIndex)
         public
         onlyOwner

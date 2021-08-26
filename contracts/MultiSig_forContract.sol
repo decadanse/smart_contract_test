@@ -1,4 +1,4 @@
-pragma solidity ^0.8.7;
+pragma solidity >=0.4.22 <0.9.0;
 
 /*We define a data structure (struct Contract) to store the data associated with each contract
 (the hash of the contract, finish deadline, signatures, and status of the contract) and indexed
