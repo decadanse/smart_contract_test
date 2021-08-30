@@ -128,8 +128,83 @@ https://intellij-support.jetbrains.com/hc/en-us/community/posts/360001018180-Err
 
 this part: npm i chai chai-as-promised
 ______________________
-6 problem/
+6 problem/ 
+How to send wei/eth to contract address? 
+how to recive some ether? 
+Calling function in truffle console error
+truffle console - invoking contract function usage 
+
+can't find correct request writing
+
+not working variants:
+MultiSigWallet.Deposit(["0x63DbD87E8a63eDCb77520Afd7E3118A52De051e6"], 20, 100)
+deployer.deploy(MultisigWallet, ["0x63DbD87E8a63eDCb77520Afd7E3118A52De051e6"], 0, 10000);
+MultisigWallet.(["0x63DbD87E8a63eDCb77520Afd7E3118A52De051e6", "0x3BBC32546271F5BCef03241271EEEBE6DCD7dA15"], 2)
 
 6 problem/solution
+
+this links can give an idea:
+
+https://ethereum.stackexchange.com/questions/42995/how-to-send-ether-to-a-contract-in-truffle-test/43006
+https://coders-errand.com/truffle-console-and-truffle-tests/
+
+OnlineStore.buySomething({from: web3.eth.defaultAccount, value: web3.utils.toWei(0.001)})
+
+let wallet beforeEach(async () => { wallet = await MultiSigWallet.new(owners, NUM_CONFIRMATIONS_REQUIRED)})
+wallet = await MultiSigWallet.new(owners, NUM_CONFIRMATIONS_REQUIRED)
+const { logs } = await wallet.sendTransaction({ from: ['0x63DbD87E8a63eDCb77520Afd7E3118A52De051e6'], value: 10, })
+
+tried:
+myContract.deployed().then(function(instance){myContract=instance})
+myContract.sendTransaction({from:web3.eth.coinbase,value:10000000000000000000})
+web3.toWei(10,"ether")
+get:
+MultiSigWallet.deployed().then(function(instance){MultiSigWallet=instance})
+MultiSigWallet.sendTransaction({from:0xD7374315EB812768e1fa454EA5ebf0effb32bbD1,value: web3.utils.toWei('10')}) // Error: Returned error: sender account not recognized
+
+
+this part:
+1)
+https://ethereum.stackexchange.com/questions/65325/error-please-pass-numbers-as-strings-or-bignumber-objects-to-avoid-precision-er/65326
+truffle(develop)> await instance.send(web3.utils.toWei("10", "ether"))
+truffle(develop)> let wallet_balance = await web3.eth.getBalance(instance.address);
+undefined
+truffle(develop)> wallet_balance
+'10000000000000000000'
+
+2)
+You can send Ether using the following:
+truffle(develop)> web3.eth.sendTransaction({to:accounts[1], from:accounts[0], value: web3.utils.toWei('1')})
+
 ______________________
-5 problem/
+7 problem/ how to add owners to MultiSigWallet in truffle?
+
+7 problem/solution
+
+1)
+https://stackoverflow.com/questions/43935520/who-is-the-owner-of-the-contracts-deployed-using-truffle
+By default the owner is accounts[0] so the first account on the list but you can set the owner by adding "from" in the truffle.js config file
+
+module.exports = {
+  networks: {
+    development: {
+      host: "localhost",
+      port: 8545,
+      network_id: "*",
+      from: "0xda9b1a939350dc7198165ff84c43ce77a723ef73"
+    }
+  }
+};
+
+for more information about migration see this https://github.com/trufflesuite/truffle/issues/138
+
+2)
+https://ethereum.stackexchange.com/questions/54415/how-can-i-transfer-ownership-to-another-contract/54436#54436
+
+to set owners: 
+truffle(develop)> const owners = (['0x63DbD87E8a63eDCb77520Afd7E3118A52De051e6', '0x3BBC32546271F5BCef03241271EEEBE6DCD7dA15', '0xD07E25a03414821deC6018F0658b4f03Fb35E20F'])
+
+______________________
+8 problem/ how to  in truffle?
+
+8 problem/solution
