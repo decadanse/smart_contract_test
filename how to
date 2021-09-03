@@ -13,7 +13,67 @@ truffle(develop)> compile
 truffle(develop)> migrate --reset
 
 creating file for testing contract and place it into "test" folder
-
 truffle(develop)> test --debug
+
+/*truffle(develop)> const owners = accounts.slice(0, 3)
+truffle(develop)> const numConfirmationsRequired = 2
+truffle(develop)> deployer.deploy(MultiSigWallet, owners, numConfirmationsRequired) */
+
+truffle(develop)> migrate // code from 2_deploy_contracts.js was executed and now we can use those changes
+truffle(develop)> let instance = await MultiSigWallet.deployed()
+truffle(develop)> let accounts = await web3.eth.getAccounts()
+truffle(develop)> instance.address //address of our MultiSigWallet
+'0x05bb4C6dbA551B98fB10c2B079911D419Af3F80d'
+/*truffle(develop)> let wallet_balance = await web3.eth.getBalance(instance.address); //see wallet balance
+truffle(develop)> wallet_balance //see wallet balance (its a const - once it setted it wont change)*/
+truffle(develop)> instance.getOwners() //see all owners
+truffle(develop)> instance.isOwner("0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0") //check is owner or not
+truffle(develop)> web3.eth.sendTransaction({to:accounts[0], from:accounts[1], value: web3.utils.toWei('20')})
+truffle(develop)> instance.numConfirmationsRequired()
+<BN: 2>
+truffle(develop)> Object.keys(instance) //view all functions, variables, const
+truffle(develop)> await instance.send(web3.utils.toWei("10", "ether")) //sent some ethet to our MultiSigWallet address
+truffle(develop)> await web3.eth.getBalance(instance.address); //see wallet balance
+
+web3.eth.sendTransaction({to:accounts[0], from:accounts[9], value: web3.utils.toWei('20')})
+0xCc5aeA5F865E96e916D65Ff8Da1dDD4CAe27326B (this is account[9])
+accounts[0] is 0x85bAcb0aa45185a01CBa9F627eD01Ef8CC434CD0 and this is the owner of MultiSigWallet
+
+
+
+https://platon-truffle.readthedocs.io/en/stable/getting-started/interacting-with-your-contracts.html
+---------------------------------------
+Truffle: how to get balance of any address or contract's address:
+
+contract('MultiSigWallet', function(accounts) {
+    describe("adopted over allow quantity", function () {
+        it("test get balance", async function () {
+            let instance = await MultiSigWallet.deployed();
+            console.log("deployed address:" +  instance.address);
+            let balance = await web3.eth.getBalance(instance.address);
+        });
+    });
+});
+-----------------------------------------
+
+connecting with Metamask
+to connect:
+    in terminal:
+    $ truffle development
+    Truffle Develop started at http://127.0.0.1:9545/
+
+
+    ($ ganache-cli --port 7545 --chainId 5777 (if URL RPC http://127.0.0.1:7545 
+                                                and Идентификатор цепочки 5777 )    0
+
+    in Metamask create new your own network with settings:
+    Имя сети
+    Truffle
+    Новый URL RPC
+    http://127.0.0.1:9545
+    Идентификатор цепочки (must be equal chainId)
+    1337 
+    Символ валюты (необязательно)
+    TR
 
 
